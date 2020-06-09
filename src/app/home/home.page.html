@@ -1,0 +1,52 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="ion-margin-top" color="secondary">
+    <ion-buttons slot="start">
+      <ion-icon class="ion-margin-start" size="large" color="light" name="menu-outline"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon class="ion-margin-end" size="large" color="light" name="ellipsis-horizontal"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scrollX=false>
+  <div class="selector">
+    <h1 class="ion-no-margin ion-no-padding">Select Plant</h1>
+    <h2>{{currentPlant}}</h2>
+    <ion-slides #introSlides [options]="sliderConfig" (ionSlideDidChange)="slideDidChange()">
+      <ion-slide *ngFor="let slide of slides">
+        <ion-img src="{{slide.image}}" (ionImgWillLoad)="imgLoaded=false" (ionImgDidLoad)="imgLoaded=true"></ion-img>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div class="elipse"> </div>
+  <div class="fab-wrapper">
+    <ion-fab horizontal="start">
+      <ion-fab-button>
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-fab horizontal="end">
+      <ion-fab-button>
+        <ion-icon name="arrow-forward"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+  <div class="search ion-padding ion-margin">
+    <h1 color="danger">Explore More</h1>
+    <ion-searchbar mode="ios" placeholder="search"></ion-searchbar>
+  </div>
+  <div class="post-border-gallery">
+    <div class="scrolling-wrapper">
+      <div class="card" routerLink="/detail" *ngFor="let item of gallery">
+        <div class="image-container">
+          <ion-img src="{{item.image}}"></ion-img>
+          <div class="titles">
+            {{item.name}}<br>
+            {{item.price}}$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
